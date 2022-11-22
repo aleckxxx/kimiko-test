@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<body>
+
+<div layout:fragment="content">
+    <div class="w-100">
+        <div class="home-header w-100">
+            <div class="home-header-content w-100 d-flex justify-content-center align-items-center">
+                <div class="welcome-message">Bienvenue à Kimiko Auto List!</div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,256L48,250.7C96,245,192,235,288,192C384,149,480,75,576,69.3C672,64,768,128,864,154.7C960,181,1056,171,1152,144C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+        </div>
+        <div  class="container">
+            <div class="card mb-3" th:each="car: ${cars}">
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        <img class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${car.model}"></h5>
+                            <p class="card-text" th:text="|Année: ${car.year}|"></p>
+                            <div class="d-flex flex-row-reverse">
+                                <a class="btn btn-primary" th:href="@{/car/detail/{id}(id=${car.id})}">Voir détails</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li th:each="i: ${#numbers.sequence(0,totalPage - 1)}" class="page-item" th:classappend="${i == currentPage} ? active : ''"><a class="page-link"  th:text="${i+1}" th:href="@{/cars?pageNo={number}(number=${i})}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
