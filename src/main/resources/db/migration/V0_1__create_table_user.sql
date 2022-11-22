@@ -5,5 +5,6 @@ create table if not exists users
     password varchar(150) NOT NULL,
     firstname varchar(100) NOT NULL,
     lastname varchar(100) NOT NULL,
+    UNIQUE(email),
     PRIMARY KEY(id)
 )

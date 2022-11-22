@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/auth_layout}">
+<body>
+
+<div layout:fragment="content">
+    <div class="form-auth align-self-center shadow rounded">
+        <div class="auth-header d-flex justify-content-center">
+            <div class="text-center bg-primary lock border rounded-circle d-flex justify-content-center align-items-center">
+                <i class="text-white fa-solid fa-unlock"></i>
+            </div>
+        </div>
+        <h1 class="h3 mb-3 fw-normal">Se connecter</h1>
+        <div class="alert alert-danger" th:if="${param.error}">
+            L'email ou le mot de passe est invalide.
+        </div>
+        <form th:action="@{/login}" method="POST">
+            <div class="form-group">
+                <label  class="mt-2 mb-2">Email</label>
+                <Input name="email" type="text" class="form-control"  />
+
+            </div>
+            <div class="form-group">
+                <label class="mt-2 mb-2">Mot de passe</label>
+                <Input name="password" class="form-control" type="password" />
+            </div>
+            <div class="form-group mt-2 mb-2">
+                <button type="submit" class="btn btn-primary w-100" >Se Connecter</button>
+            </div>
+        </form>
+        <p class="text-center">Pas Encore de compte ? cliquer ici. </p>
+        <hr/>
+    </div>
+
+</div>
+</body>
+</html>

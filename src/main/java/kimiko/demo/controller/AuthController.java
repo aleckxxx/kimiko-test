@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import javax.validation.Valid;
 
 @Controller
@@ -21,6 +22,7 @@ public class AuthController {
     UserService userService;
     @Autowired
     SecurityService securityService;
+
 
     @RequestMapping(value="/login",method = RequestMethod.GET)
     public ModelAndView login(){
