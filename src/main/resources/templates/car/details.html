@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${car.model}"></h5>
                     <h6 class="car-text" th:text="${'Année: '+car.year}"></h6>
-                    <h6 class="car-text" th:text="${'Marque: '+car.brand.name}"></h6>
+                    <h6 class="car-text" th:text="${'Marque: '+car.brand}"></h6>
                     <p class="card-text">Prix: $<span th:text="${car.averagePrice}"></span></p>
                 </div>
             </div>
