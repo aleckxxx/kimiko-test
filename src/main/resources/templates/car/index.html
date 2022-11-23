@@ -23,7 +23,7 @@
                             <h5 class="card-title" th:text="${car.model}"></h5>
                             <p class="card-text" th:text="|Année: ${car.year}|"></p>
                             <div class="d-flex flex-row-reverse">
-                                <a class="btn btn-primary" th:href="@{/car/detail/{id}(id=${car.id})}">Voir détails</a>
+                                <a class="btn btn-primary" th:href="@{/cars/{id}(id=${car.id})}">Voir détails</a>
                             </div>
                         </div>
                     </div>

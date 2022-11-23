@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<body>
+
+<div layout:fragment="content">
+    <div class="w-100">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,256L48,250.7C96,245,192,235,288,192C384,149,480,75,576,69.3C672,64,768,128,864,154.7C960,181,1056,171,1152,144C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+        <div  class="container">
+            <div class="card mb-3">
+                <img th:src="@{${car.picture}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${car.model}"></h5>
+                    <h6 class="car-text" th:text="${'Année: '+car.year}"></h6>
+                    <h6 class="car-text" th:text="${'Marque: '+car.brand.name}"></h6>
+                    <p class="card-text">Prix: $<span th:text="${car.averagePrice}"></span></p>
+                </div>
+            </div>
+            <h2 class="mb-3 mt-5">Commentaires <i class="fa-solid fa-angle-down"></i></h2>
+            <div th:each="comment: ${car.comments}" class="border-bottom article-item mt-3">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i className="fa-solid fa-user"></i> </div>
+                        <div class="ms-2 ml-2 c-details">
+                            <h6 class="mb-0" th:text="${comment.user.firstname+' '+comment.user.lastname}"></h6> <span></span>
+                        </div>
+                    </div>
+                    <div class="text-secondary" th:text="${comment.createdAt}">
+                    </div>
+                </div>
+                <div class="article-body mt-3 mb-5" th:text="${comment.content}">
+                </div>
+            </div>
+            <h5 sec:authorize="isAnonymous()" class="text-center mt-5">Veuillez vous connecter pour commenter.</h5>
+            <p class="alert alert-danger" th:if="${param.error!=null}" th:text="${param.error}"></p>
+            <form sec:authorize="isAuthenticated()" th:action="@{/comments}" th:object="${newComment}" th:method="POST">
+                <input type="hidden" name="carId" th:field="*{carId}" />
+                <div class="form-group">
+                    <textarea name="content"  class="form-post-body form-control" th:field="*{content}"></textarea>
+                </div>
+                <div class="d-flex w-100 flex-row-reverse form-group mt-2 mb-2">
+                    <button type="submit" class="btn btn-primary ">Commenter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

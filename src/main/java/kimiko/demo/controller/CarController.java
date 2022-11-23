@@ -1,12 +1,14 @@
 package kimiko.demo.controller;
 
 import kimiko.demo.dto.CarDto;
+import kimiko.demo.dto.CommentDto;
 import kimiko.demo.entity.Car;
 import kimiko.demo.mapper.CarMapper;
 import kimiko.demo.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,4 +40,19 @@ public class CarController {
         modelAndView.setViewName("car/index");
         return modelAndView;
     }
+
+    @RequestMapping(value="/cars/{id}", method = RequestMethod.GET)
+    public ModelAndView carDetail(@PathVariable(name="id") Integer carId){
+        ModelAndView modelView = new ModelAndView();
+        Car carEntity = carService.findById(carId);
+        CarDto car = carMapper.toCarDtoFull(carEntity);
+        CommentDto newComment = new CommentDto();
+        newComment.setCarId(car.getId());
+        modelView.addObject("car",car);
+        modelView.addObject("newComment",newComment);
+        modelView.setViewName("car/details");
+        return modelView;
+    }
+
+
 }

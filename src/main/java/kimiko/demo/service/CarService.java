@@ -23,5 +23,9 @@ public class CarService {
         Pageable paging = PageRequest.of(pageNo, pageLimit);
         return carRepository.findAll(paging);
     }
+
+    public Car findById(int id){
+        return carRepository.findById(id);
+    }
 }
 

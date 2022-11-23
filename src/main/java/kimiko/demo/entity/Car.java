@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @Builder
@@ -31,5 +32,6 @@ public class Car {
     @ManyToOne
     @JoinColumn(name="brand_id")
     private Brand brand;
-
+    @OneToMany(mappedBy = "car")
+    private List<Comment> comments;
 }

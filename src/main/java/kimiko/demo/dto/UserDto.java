@@ -2,10 +2,7 @@ package kimiko.demo.dto;
 
 
 import kimiko.demo.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.modelmapper.ModelMapper;
 
@@ -13,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
+@Builder
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
