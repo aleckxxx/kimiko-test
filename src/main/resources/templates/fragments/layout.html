@@ -15,8 +15,18 @@
 <div class="d-flex justify-content-center shadow-sm w-100 clearfix">
     <div class="content d-flex justify-content-between w-75 p-3">
         <div class="navbar-brand mb-0 h1">
-            KIMIKO
+            <a class="logo-message" th:href="@{/}">KIMIKO</a>
         </div>
+        <ul sec:authorize="isAnonymous()" class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/login}">Se connecter</a>
+            </li>
+        </ul>
+        <ul sec:authorize="isAuthenticated()" class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/login}">Se déconnecter</a>
+            </li>
+        </ul>
     </div>
 </div>
 <!-- END HEADER -->
